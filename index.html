@@ -1598,6 +1598,24 @@
     wrapper.addEventListener('click', hideHint, { once: true });
   })();
 
+  /* ── Mobile card focus on scroll ── */
+  (function () {
+    if (!window.matchMedia('(max-width: 768px)').matches) return;
+
+    const cards = document.querySelectorAll('.pcard, .bcard');
+    if (!cards.length) return;
+
+    const mobileCardObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const focused = entry.isIntersecting && entry.intersectionRatio > 0.6;
+        entry.target.style.transform = focused ? 'scale(1.03)' : '';
+        entry.target.style.boxShadow = focused ? '0 12px 32px rgba(0,0,0,0.10)' : '';
+      });
+    }, { threshold: [0.4, 0.6, 0.8] });
+
+    cards.forEach(card => mobileCardObs.observe(card));
+  })();
+
   /* ── Contact form ── */
   function handleSubmit(e) {
     e.preventDefault();
