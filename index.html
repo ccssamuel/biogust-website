@@ -1212,6 +1212,19 @@
       }
       .footer-links { flex-wrap: wrap; justify-content: center; gap: 1.25rem; }
     }
+
+    @media (hover: none) {
+      .bento-cell .bento-img-wrap img {
+        transition: none;
+      }
+      .bento-cell:hover .bento-img-wrap img {
+        transform: scale(1);
+      }
+      .bento-overlay {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -1837,6 +1850,33 @@
     }, { threshold: [0.4, 0.6, 0.8] });
 
     cards.forEach(card => mobileCardObs.observe(card));
+  })();
+
+  /* ── Gallery: fade-in-on-scroll for touch devices ── */
+  (function () {
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
+
+    if (isTouchDevice) {
+      const bentoCells = document.querySelectorAll('.bento-cell');
+
+      bentoCells.forEach(cell => {
+        cell.style.opacity = '0';
+        cell.style.transform = 'translateY(20px)';
+        cell.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      });
+
+      const galleryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            galleryObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      bentoCells.forEach(cell => galleryObserver.observe(cell));
+    }
   })();
 
   /* ── Contact form ── */
