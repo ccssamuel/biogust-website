@@ -647,6 +647,41 @@
       transform: scale(1.04);
     }
 
+    .price-block {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin: 1.2rem 0 0.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(107, 76, 42, 0.12);
+    }
+    .price-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1;
+    }
+    .price-currency {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--forest);
+    }
+    .price-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .shipping-note {
+      text-align: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 1.5rem;
+      letter-spacing: 0.03em;
+    }
+
     /* ══════════════════════════════════════
        PROCESS
     ══════════════════════════════════════ */
@@ -1343,6 +1378,10 @@
         <li>Bogată în fibre</li>
         <li>Fără aditivi și conservanți</li>
       </ul>
+      <div class="price-block">
+        <span class="price-amount">25 <span class="price-currency">lei</span></span>
+        <span class="price-note">TVA inclus</span>
+      </div>
       <div class="pcard-foot">
         <span class="pcard-weight">750g</span>
         <a href="#contact" class="btn-order">Comandă</a>
@@ -1359,6 +1398,10 @@
         <li>Fără conservanți</li>
         <li>Ușor de preparat</li>
       </ul>
+      <div class="price-block">
+        <span class="price-amount">20 <span class="price-currency">lei</span></span>
+        <span class="price-note">TVA inclus</span>
+      </div>
       <div class="pcard-foot">
         <span class="pcard-weight">400g</span>
         <a href="#contact" class="btn-order">Comandă</a>
@@ -1366,6 +1409,7 @@
     </article>
 
   </div>
+  <p class="shipping-note">+ livrare prin curier: 10–15 lei per comandă</p>
 </section>
 
 <!-- ── PROCESS ── -->
